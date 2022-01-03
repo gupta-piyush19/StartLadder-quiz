@@ -2,7 +2,7 @@ import Lottie from "react-lottie";
 import Right from "../../assets/lottie/right.json";
 import Wrong from "../../assets/lottie/wrong.json";
 
-const index = ({ text }) => {
+const LottieResult = ({ text }) => {
   const lottie = text === "right" ? Right : Wrong;
 
   const defaultOptions = {
@@ -15,4 +15,4 @@ const index = ({ text }) => {
   return <Lottie options={defaultOptions} height={400} width={400} />;
 };
 
-export default index;
+export default LottieResult;

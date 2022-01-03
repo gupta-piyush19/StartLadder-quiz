@@ -15,3 +15,9 @@ body {
   background: linear-gradient(rgba(128, 255, 219, 0.2) 50%, #fff 50%);
   margin: auto;
 }
+
+.App {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

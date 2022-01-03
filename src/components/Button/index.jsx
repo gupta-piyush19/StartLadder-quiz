@@ -1,7 +1,7 @@
 import ButtonStyles from "./Button.module.css";
 
-const index = ({ text }) => {
+const Button = ({ text }) => {
   return <button className={ButtonStyles.button}>{text}</button>;
 };
 
-export default index;
+export default Button;

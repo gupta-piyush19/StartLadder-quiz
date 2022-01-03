@@ -1,11 +1,11 @@
 import Navbar from "./components/Navbar";
-import Button from "./components/Button";
-import LottieResult from "./components/LottieResult";
+import GameWindow from "./components/GameWindow";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
+      <GameWindow />
     </div>
   );
 }

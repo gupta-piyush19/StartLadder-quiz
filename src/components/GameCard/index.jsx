@@ -1,5 +1,11 @@
-const index = () => {
-  return <div></div>;
+import GameTimer from "../GameTimer";
+
+const GameCard = () => {
+  return (
+    <div>
+      <GameTimer />
+    </div>
+  );
 };
 
-export default index;
+export default GameCard;

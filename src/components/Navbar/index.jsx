@@ -1,7 +1,7 @@
 import Logo from "../../assets/logo.png";
 import NavbarStyles from "./Navbar.module.css";
 
-const index = () => {
+const Navbar = () => {
   const links = ["Programs", "Live Projects", "Community", "Job", "About"];
   return (
     <nav className={NavbarStyles.navbar}>
@@ -19,4 +19,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Navbar;
