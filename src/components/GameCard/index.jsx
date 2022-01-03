@@ -12,11 +12,11 @@ const GameCard = ({ questions }) => {
   const [animating, setAnimating] = useState(false);
   const [answer, setAnswer] = useState("");
   const [lottieText, setLottieText] = useState("");
-
+  const [pause, setPause] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     setAnimating(true);
-
+    setPause(true);
     if (answer === currQues.answer) {
       setLottieText("right");
     } else {
@@ -30,6 +30,7 @@ const GameCard = ({ questions }) => {
       setAnswer("");
       setGameState((prevState) => prevState + 1);
       setCurrQues(questions[gameState + 1]);
+      setPause(false);
     }, 2000);
   };
 
@@ -57,7 +58,7 @@ const GameCard = ({ questions }) => {
               <p className={GameCardStyles.heading}>Topic</p>
               <p>{currQues?.category}</p>
             </div>
-            <GameTimer />
+            <GameTimer pause={pause} start={start} />
           </div>
           <div className={GameCardStyles.question}>
             <p className={GameCardStyles.heading}>

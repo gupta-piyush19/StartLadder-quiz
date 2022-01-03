@@ -1,44 +1,40 @@
 import { useEffect, useState } from "react";
 import TimerStyles from "./GameTimer.module.css";
 
-const GameTimer = () => {
+const GameTimer = ({ pause, start }) => {
   const [sec, setSec] = useState("00");
   const [min, setMin] = useState("00");
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      const secondCounter = counter % 60;
-      const minuteCounter = Math.floor(counter / 60);
+    if (!pause) {
+      const intervalId = setInterval(() => {
+        const secondCounter = counter % 60;
+        const minuteCounter = Math.floor(counter / 60);
 
-      const computedSecond =
-        String(secondCounter).length === 1
-          ? `0${secondCounter}`
-          : secondCounter;
-      const computedMinute =
-        String(minuteCounter).length === 1
-          ? `0${minuteCounter}`
-          : minuteCounter;
+        const computedSecond =
+          String(secondCounter).length === 1
+            ? `0${secondCounter}`
+            : secondCounter;
+        const computedMinute =
+          String(minuteCounter).length === 1
+            ? `0${minuteCounter}`
+            : minuteCounter;
 
-      setSec(computedSecond);
-      setMin(computedMinute);
-      setCounter((counter) => counter + 1);
-    }, 1000);
+        setSec(computedSecond);
+        setMin(computedMinute);
+        setCounter((counter) => counter + 1);
+      }, 1000);
 
-    return () => clearInterval(intervalId);
-  }, [counter]);
+      return () => clearInterval(intervalId);
+    }
+  }, [counter, pause]);
 
-  // useEffect(() => {
-  //   const id = setInterval(() => {
-  //     setSec((prevSec) => prevSec + 1);
-
-  //     if (sec == 60) {
-  //       setMin((prevMin) => prevMin + Math.floor(sec / 60));
-  //       setSec(0);
-  //     }
-  //   }, 1000);
-  //   return () => clearInterval(id);
-  // }, [sec]);
+  if (!start) {
+    setCounter(0);
+    setSec("00");
+    setMin("00");
+  }
 
   return (
     <div className={TimerStyles.timer}>
