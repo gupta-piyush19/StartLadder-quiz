@@ -1,0 +1,30 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+}
+
+.logo {
+  height: 54px;
+  width: 120px;
+}
+
+.logoImage {
+  height: 100%;
+  width: 100%;
+}
+.navbarLinks {
+  display: flex;
+  gap: 40px;
+  color: rgb(103, 118, 255);
+  font-size: 16px;
+}
+
+.navbarLink {
+  cursor: pointer;
+}
+
+.navbarLink:hover {
+  color: rgb(103, 118, 255, 0.7);
+}
