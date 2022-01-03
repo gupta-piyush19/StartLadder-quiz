@@ -3,4 +3,70 @@
   width: 60%;
   border-radius: 5px;
   overflow: hidden;
+  border: 1px solid #d4d4d4;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.heading {
+  color: #b2a9a9;
+}
+
+.topic {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  height: 33%;
+  padding: 20px;
+}
+
+.question {
+  background-color: rgba(128, 255, 219, 0.2);
+  height: 33%;
+  padding: 20px;
+}
+
+.input {
+  font-size: 14px;
+  padding: 8px;
+  color: #222;
+  outline: none;
+  border-radius: 5px;
+  border: 0;
+  display: inline-block;
+  width: 100%;
+}
+
+.input::placeholder {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.result {
+  color: #fff;
+  background: linear-gradient(91.23deg, #6776ff 0%, #80ffdb 131.71%);
+  height: 34%;
+  padding: 20px;
+  font-size: 14px;
+}
+.sol {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.solButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.form {
+  width: 50%;
+}
+
+.lottieDiv {
+  height: 100%;
+  width: 100%;
 }

@@ -2,8 +2,9 @@ import Lottie from "react-lottie";
 import Right from "../../assets/lottie/right.json";
 import Wrong from "../../assets/lottie/wrong.json";
 
-const LottieResult = ({ text }) => {
+const LottieResult = ({ styles, text }) => {
   const lottie = text === "right" ? Right : Wrong;
+  console.log(text);
 
   const defaultOptions = {
     loop: false,
@@ -12,7 +13,13 @@ const LottieResult = ({ text }) => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-  return <Lottie options={defaultOptions} height={400} width={400} />;
+  return (
+    <Lottie
+      options={defaultOptions}
+      height={styles.height}
+      width={styles.width}
+    />
+  );
 };
 
 export default LottieResult;
