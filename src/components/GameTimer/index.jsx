@@ -28,6 +28,18 @@ const GameTimer = () => {
     return () => clearInterval(intervalId);
   }, [counter]);
 
+  // useEffect(() => {
+  //   const id = setInterval(() => {
+  //     setSec((prevSec) => prevSec + 1);
+
+  //     if (sec == 60) {
+  //       setMin((prevMin) => prevMin + Math.floor(sec / 60));
+  //       setSec(0);
+  //     }
+  //   }, 1000);
+  //   return () => clearInterval(id);
+  // }, [sec]);
+
   return (
     <div className={TimerStyles.timer}>
       <div className="min">

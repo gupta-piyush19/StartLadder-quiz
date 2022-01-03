@@ -1,9 +1,14 @@
+import { useState } from "react";
 import GameTimer from "../GameTimer";
+import IntroWindow from "../IntroWindow";
+import GameCardStyles from "./GameCard.module.css";
 
-const GameCard = () => {
+const GameCard = ({ questions }) => {
+  const [start, setStart] = useState(false);
   return (
-    <div>
-      <GameTimer />
+    <div className={GameCardStyles.card}>
+      {!start && <IntroWindow setStart={setStart} />}
+      {start && <GameTimer />}
     </div>
   );
 };

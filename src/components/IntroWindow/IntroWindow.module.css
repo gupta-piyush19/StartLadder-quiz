@@ -1,0 +1,8 @@
+.style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #6776ff 0%, #80ffdb 117.88%);
+}
