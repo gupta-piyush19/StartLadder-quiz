@@ -32,3 +32,18 @@
 .navbarLink:hover {
   color: rgb(103, 118, 255, 0.7);
 }
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1.5rem;
+  }
+  .navbarLinks {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbarLinks {
+    display: none;
+  }
+}

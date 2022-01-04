@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import GameTimer from "../GameTimer";
 import IntroWindow from "../IntroWindow";
 import GameCardStyles from "./GameCard.module.css";
@@ -22,8 +22,12 @@ const GameCard = ({ questions }) => {
   const input = useRef();
 
   const focusInput = () => {
-    input.current.focus();
+    input?.current?.focus();
   };
+
+  useEffect(() => {
+    focusInput();
+  }, [start]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
