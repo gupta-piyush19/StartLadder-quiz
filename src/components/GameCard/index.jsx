@@ -40,7 +40,9 @@ const GameCard = ({ questions }) => {
         .toLowerCase() === currQues.answer.toLowerCase()
     ) {
       setLottieText("Right");
-      setScore((prevScore) => prevScore + 1);
+      if (!seeSolution) {
+        setScore((prevScore) => prevScore + 1);
+      }
     } else {
       setLottieText("Wrong");
     }

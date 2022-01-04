@@ -18,6 +18,7 @@
   height: 100%;
   width: 100%;
 }
+
 .navbarLinks {
   display: flex;
   gap: 40px;
@@ -37,13 +38,40 @@
   .navbar {
     padding: 1.5rem;
   }
-  .navbarLinks {
-    gap: 20px;
+  .hamburger {
+    color: #6776ff;
+    display: none;
   }
-}
-
-@media (max-width: 640px) {
+  .verticalNavbar {
+    display: none;
+  }
+  .navBurger {
+    background-color: #fff;
+  }
   .navbarLinks {
     display: none;
+  }
+  .hamburger {
+    display: block;
+  }
+  .verticalNavbar {
+    position: absolute;
+    top: 100px;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+  }
+
+  .verticalLinks {
+    color: #6776ff;
+  }
+  .verticalLink {
+    font-size: 24px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: 500;
   }
 }
