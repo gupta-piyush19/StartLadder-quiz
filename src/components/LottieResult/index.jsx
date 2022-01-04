@@ -3,8 +3,7 @@ import Right from "../../assets/lottie/right.json";
 import Wrong from "../../assets/lottie/wrong.json";
 
 const LottieResult = ({ styles, text }) => {
-  const lottie = text === "right" ? Right : Wrong;
-  console.log(text);
+  const lottie = text === "Right" ? Right : text === "Wrong" ? Wrong : "";
 
   const defaultOptions = {
     loop: false,

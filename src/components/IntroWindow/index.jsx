@@ -5,7 +5,7 @@ import IntroWindowStyles from "./IntroWindow.module.css";
 const IntroWindow = ({ setStart }) => {
   return (
     <div className={IntroWindowStyles.style}>
-      <Button onClick={() => setStart(true)} text={"Start Quiz"} />
+      <Button onClick={() => setStart("game")} text={"Start Quiz"} />
     </div>
   );
 };

@@ -6,24 +6,24 @@ import Button from "../Button";
 import LottieResult from "../LottieResult";
 
 const GameCard = ({ questions }) => {
-  const [start, setStart] = useState(false);
+  const [start, setStart] = useState("intro");
   const [gameState, setGameState] = useState(0);
   const [currQues, setCurrQues] = useState(questions[gameState]);
   const [animating, setAnimating] = useState(false);
   const [answer, setAnswer] = useState("");
   const [lottieText, setLottieText] = useState("");
   const [pause, setPause] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setAnimating(true);
     setPause(true);
     if (answer === currQues.answer) {
-      setLottieText("right");
+      setLottieText("Right");
     } else {
-      setLottieText("wrong");
+      setLottieText("Wrong");
     }
 
-    console.log("out", lottieText);
     setTimeout(() => {
       setAnimating(false);
       setLottieText("");
@@ -31,16 +31,26 @@ const GameCard = ({ questions }) => {
       setGameState((prevState) => prevState + 1);
       setCurrQues(questions[gameState + 1]);
       setPause(false);
-    }, 2000);
+    }, 1500);
+  };
+
+  const resetGame = () => {
+    setStart("intro");
+    setGameState(0);
+    setCurrQues(questions[gameState]);
+    setAnimating(false);
+    setAnswer("");
+    setLottieText("");
+    setPause(false);
   };
 
   let lottieBg = {
     background: "linear-gradient(91.23deg, #20622A 0%, #48B566 131.71%)",
   };
-  if (lottieText === "right") {
+  if (lottieText === "Right") {
     lottieBg.background =
       "linear-gradient(91.23deg, #20622A 0%, #48B566 131.71%)";
-  } else if (lottieText === "wrong") {
+  } else if (lottieText === "Wrong") {
     lottieBg.background =
       "linear-gradient(91.23deg, #F35325 0%, #F3AD25 131.71%)";
   } else {
@@ -50,8 +60,8 @@ const GameCard = ({ questions }) => {
 
   return (
     <div className={GameCardStyles.card}>
-      {!start && <IntroWindow setStart={setStart} />}
-      {start && (
+      {start === "intro" && <IntroWindow setStart={setStart} />}
+      {start === "game" && (
         <>
           <div className={GameCardStyles.topic}>
             <div>
@@ -78,6 +88,7 @@ const GameCard = ({ questions }) => {
                       placeholder="Type Answer..."
                       value={answer}
                       onChange={(e) => setAnswer(e.target.value)}
+                      required
                     />
                   </form>
                   <div className={GameCardStyles.solButton}>
@@ -99,6 +110,7 @@ const GameCard = ({ questions }) => {
           </div>
         </>
       )}
+      {start === "end" && <IntroWindow setStart={setStart} />}
     </div>
   );
 };

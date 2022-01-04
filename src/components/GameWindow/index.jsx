@@ -22,7 +22,7 @@ const GameWindow = () => {
   }, []);
   return (
     <div className={GameStyles.window}>
-      {questions?.length && <GameCard questions={questions} />}
+      {questions?.length ? <GameCard questions={questions} /> : null}
     </div>
   );
 };

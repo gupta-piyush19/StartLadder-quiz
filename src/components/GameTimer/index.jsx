@@ -30,7 +30,7 @@ const GameTimer = ({ pause, start }) => {
     }
   }, [counter, pause]);
 
-  if (!start) {
+  if (start === "intro") {
     setCounter(0);
     setSec("00");
     setMin("00");
