@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import GameTimer from "../GameTimer";
 import IntroWindow from "../IntroWindow";
 import GameCardStyles from "./GameCard.module.css";
 import Button from "../Button";
 import LottieResult from "../LottieResult";
+import ResultWindow from "../ResultWindow";
 
 const GameCard = ({ questions }) => {
   const [start, setStart] = useState("intro");
@@ -14,12 +15,22 @@ const GameCard = ({ questions }) => {
   const [lottieText, setLottieText] = useState("");
   const [pause, setPause] = useState(false);
 
+  const [score, setScore] = useState(0);
+  const [gameTime, setGameTime] = useState(0);
+
+  const input = useRef();
+
+  const focusInput = () => {
+    input.current.focus();
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setAnimating(true);
     setPause(true);
-    if (answer === currQues.answer) {
+    if (answer.toLowerCase() === currQues.answer.toLowerCase()) {
       setLottieText("Right");
+      setScore((prevScore) => prevScore + 1);
     } else {
       setLottieText("Wrong");
     }
@@ -28,16 +39,24 @@ const GameCard = ({ questions }) => {
       setAnimating(false);
       setLottieText("");
       setAnswer("");
-      setGameState((prevState) => prevState + 1);
-      setCurrQues(questions[gameState + 1]);
-      setPause(false);
+
+      const newGameState = gameState + 1;
+      setGameState(newGameState);
+      if (newGameState < questions.length) {
+        setCurrQues(questions[newGameState]);
+        setPause(false);
+        focusInput();
+      } else {
+        setStart("end");
+      }
     }, 1500);
   };
 
   const resetGame = () => {
     setStart("intro");
     setGameState(0);
-    setCurrQues(questions[gameState]);
+    setCurrQues(questions[0]);
+    setScore(0);
     setAnimating(false);
     setAnswer("");
     setLottieText("");
@@ -68,13 +87,13 @@ const GameCard = ({ questions }) => {
               <p className={GameCardStyles.heading}>Topic</p>
               <p>{currQues?.category}</p>
             </div>
-            <GameTimer pause={pause} start={start} />
+            <GameTimer pause={pause} setGameTime={setGameTime} start={start} />
           </div>
           <div className={GameCardStyles.question}>
             <p className={GameCardStyles.heading}>
               Question {gameState + 1} of {questions.length}
             </p>
-            <p>{currQues.question}</p>
+            <p>{currQues?.question}</p>
           </div>
           <div className={GameCardStyles.result} style={{ ...lottieBg }}>
             {!animating ? (
@@ -88,6 +107,7 @@ const GameCard = ({ questions }) => {
                       placeholder="Type Answer..."
                       value={answer}
                       onChange={(e) => setAnswer(e.target.value)}
+                      ref={input}
                       required
                     />
                   </form>
@@ -110,7 +130,13 @@ const GameCard = ({ questions }) => {
           </div>
         </>
       )}
-      {start === "end" && <IntroWindow setStart={setStart} />}
+      {start === "end" && (
+        <ResultWindow
+          accuracy={score / questions?.length}
+          gameTime={gameTime / questions?.length}
+          resetGame={resetGame}
+        />
+      )}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TimerStyles from "./GameTimer.module.css";
 
-const GameTimer = ({ pause, start }) => {
+const GameTimer = ({ pause, start, setGameTime }) => {
   const [sec, setSec] = useState("00");
   const [min, setMin] = useState("00");
   const [counter, setCounter] = useState(0);
@@ -25,7 +25,7 @@ const GameTimer = ({ pause, start }) => {
         setMin(computedMinute);
         setCounter((counter) => counter + 1);
       }, 1000);
-
+      setGameTime(counter);
       return () => clearInterval(intervalId);
     }
   }, [counter, pause]);
