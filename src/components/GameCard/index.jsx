@@ -18,6 +18,7 @@ const GameCard = ({ questions }) => {
   const [score, setScore] = useState(0);
   const [gameTime, setGameTime] = useState(0);
 
+  const [seeSolution, setSeeSolution] = useState(false);
   const input = useRef();
 
   const focusInput = () => {
@@ -28,7 +29,12 @@ const GameCard = ({ questions }) => {
     e.preventDefault();
     setAnimating(true);
     setPause(true);
-    if (answer.toLowerCase() === currQues.answer.toLowerCase()) {
+    if (
+      answer
+        ?.replace(/^\s+|\s+$/g, "")
+        .replace(/\s+/g, " ")
+        .toLowerCase() === currQues.answer.toLowerCase()
+    ) {
       setLottieText("Right");
       setScore((prevScore) => prevScore + 1);
     } else {
@@ -50,6 +56,7 @@ const GameCard = ({ questions }) => {
         setStart("end");
       }
     }, 1500);
+    setSeeSolution(false);
   };
 
   const resetGame = () => {
@@ -61,6 +68,7 @@ const GameCard = ({ questions }) => {
     setAnswer("");
     setLottieText("");
     setPause(false);
+    setSeeSolution(false);
   };
 
   let lottieBg = {
@@ -98,7 +106,7 @@ const GameCard = ({ questions }) => {
           <div className={GameCardStyles.result} style={{ ...lottieBg }}>
             {!animating ? (
               <>
-                <p>ANSWER</p>
+                <p className={GameCardStyles.ans}> ANSWER </p>
                 <div className={GameCardStyles.sol}>
                   <form onSubmit={handleSubmit} className={GameCardStyles.form}>
                     <input
@@ -111,10 +119,21 @@ const GameCard = ({ questions }) => {
                       required
                     />
                   </form>
-                  <div className={GameCardStyles.solButton}>
-                    <p>Stuck ?</p>
-                    <Button text={"See Solution"} />
-                  </div>
+                  {!seeSolution ? (
+                    <div className={GameCardStyles.solButton}>
+                      <>
+                        <p>Stuck ?</p>
+                        <Button
+                          onClick={() => setSeeSolution(true)}
+                          text={"See Solution"}
+                        />
+                      </>
+                    </div>
+                  ) : (
+                    <p className={GameCardStyles.answerReveal}>
+                      {currQues.answer}
+                    </p>
+                  )}
                 </div>
               </>
             ) : (

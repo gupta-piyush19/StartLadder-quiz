@@ -28,7 +28,7 @@
 
 .input {
   font-size: 14px;
-  padding: 8px;
+  padding: 0.5rem;
   color: #222;
   outline: none;
   border-radius: 5px;
@@ -48,11 +48,22 @@
   padding: 20px;
   font-size: 14px;
 }
+
+.ans {
+  margin-bottom: 4px;
+}
+.answerReveal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .sol {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  align-items: stretch;
 }
 
 .solButton {
@@ -69,4 +80,25 @@
 .lottieDiv {
   height: 100%;
   width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    width: 80%;
+    height: 40%;
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    width: 90%;
+    height: 40%;
+  }
+  .form {
+    width: 100%;
+  }
+  .sol {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 }
