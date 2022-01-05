@@ -34,16 +34,17 @@
   color: rgb(103, 118, 255, 0.7);
 }
 
+.hamburger {
+  color: #6776ff;
+  display: none;
+}
+.verticalNavbar {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .navbar {
     padding: 1.5rem;
-  }
-  .hamburger {
-    color: #6776ff;
-    display: none;
-  }
-  .verticalNavbar {
-    display: none;
   }
   .navBurger {
     background-color: #fff;
