@@ -6,7 +6,7 @@ import Hamburger from "hamburger-react";
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
 
-  const links = ["Programs", "Live Projects", "Community", "Job", "About"];
+  const links = ["Programs", "Live Projects", "Community", "Jobs", "About"];
   return (
     <>
       <nav

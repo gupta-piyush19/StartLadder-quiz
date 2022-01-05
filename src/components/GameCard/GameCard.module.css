@@ -19,12 +19,14 @@
   background-color: #fff;
   height: 33%;
   padding: 20px;
+  font-weight: 500;
 }
 
 .question {
   background-color: rgba(128, 255, 219, 0.2);
   height: 33%;
   padding: 20px;
+  font-weight: 500;
 }
 
 .input {
@@ -53,9 +55,22 @@
 .ans {
   margin-bottom: 4px;
 }
+
+@keyframes fadein {
+  from {
+    opacity: 0.5;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
 .answerReveal {
   display: flex;
   align-items: center;
+  animation: fadein 0.3s ease-in;
 }
 
 .sol {
@@ -78,6 +93,16 @@
 .lottieDiv {
   height: 100%;
   width: 100%;
+}
+
+.sliderContainer {
+  width: 100%;
+  overflow: hidden;
+}
+
+.sliderDiv {
+  display: grid;
+  transition: transform 0.8s ease-in;
 }
 
 @media (max-width: 1024px) {

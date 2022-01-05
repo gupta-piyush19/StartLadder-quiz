@@ -20,6 +20,7 @@ const GameCard = ({ questions }) => {
 
   const [seeSolution, setSeeSolution] = useState(false);
   const input = useRef();
+  const animDiv = useRef();
 
   const focusInput = () => {
     input?.current?.focus();
@@ -57,13 +58,23 @@ const GameCard = ({ questions }) => {
       if (newGameState < questions.length) {
         setCurrQues(questions[newGameState]);
         setPause(false);
-        focusInput();
       } else {
         setStart("end");
       }
     }, 1500);
     setSeeSolution(false);
   };
+
+  useEffect(() => {
+    if (start !== "game") return;
+    input.current.disabled = true;
+    animDiv.current.style.transform = `translate(-${gameState * 100}%)`;
+    const id = setTimeout(() => {
+      input.current.disabled = false;
+      focusInput();
+    }, 800);
+    return () => clearTimeout(id);
+  }, [currQues]);
 
   const resetGame = () => {
     setStart("intro");
@@ -107,7 +118,19 @@ const GameCard = ({ questions }) => {
             <p className={GameCardStyles.heading}>
               Question {gameState + 1} of {questions.length}
             </p>
-            <p>{currQues?.question}</p>
+            <div className={GameCardStyles.sliderContainer}>
+              <div
+                className={GameCardStyles.sliderDiv}
+                ref={animDiv}
+                style={{
+                  gridTemplateColumns: `repeat(${questions.length}, 100%)`,
+                }}
+              >
+                {questions.map((ques) => (
+                  <p className={GameCardStyles.sliderQues}>{ques.question}</p>
+                ))}
+              </div>
+            </div>
           </div>
           <div className={GameCardStyles.result} style={{ ...lottieBg }}>
             {!animating ? (
